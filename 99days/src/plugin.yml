@@ -1,0 +1,23 @@
+name: 99floors
+version: 0.1.0 Beta
+description: 99floors plugin 
+main: net.jameslikeside.main.Main
+
+commands:
+  kit:
+  gmc:
+  gms:
+  gma:
+  gmsp:
+  SpawnMob:
+  Heal:
+  SpawnMobGUI:
+  Spawn:
+  AuctionGUI:
+  
+permissions:
+  minecraft.command.gamemode:
+    Description: Allow the use of /gm<letter>
+  minecraft.comamnd.give:
+    Description: Allow use of /give and /kit and /i (soon to come)
+    
