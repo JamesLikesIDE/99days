@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="99Days:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/99Days_jar</output-path>
+    <root id="archive" name="99floors.jar">
+      <element id="module-output" name="99floors" />
+    </root>
+  </artifact>
+</component>
