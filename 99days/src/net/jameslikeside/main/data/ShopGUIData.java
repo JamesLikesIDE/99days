@@ -231,7 +231,7 @@ public class ShopGUIData implements Listener {
 							ItemStack giveUltimateSkellyHelmet = new ItemBuilder(CustomSkullData.getSkull("http://textures.minecraft.net/texture/77b9dfd281deaef2628ad5840d45bcda436d6626847587f3ac76498a51c861")).setDisplayName("§bUltimate Skelly Helmet").setLore(Arrays.asList("§3Protection XX", "§3Aqua Affinity", " ", "§7Ability: Protection 20 and unlimited night vision", " ", "§7Full set ability: Take less damage from projectiles", " ", "§cRequires combat level 500", "§3Unbreakable"))
 									.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 20, true)
 									.addEnchantment(Enchantment.OXYGEN, 1, true)
-									.addEnchantment(Enchantment.DURABILITY, -1, true)
+									.addEnchantment(Enchantment.DURABILITY, 100000, true)
 									.addItemFlag(ItemFlag.HIDE_ENCHANTS).build();
 							p.getInventory().addItem(giveUltimateSkellyHelmet);
 						}
@@ -252,7 +252,7 @@ public class ShopGUIData implements Listener {
 							ScoreboardListener.setScoreboard(p);
 							ItemStack giveUltimateSkellyChestplate = new ItemBuilder(Material.DIAMOND_CHESTPLATE, 1).setDisplayName("§bUltimate Skelly Chestplate").setLore(Arrays.asList("§3Protection XX"," ", "§7Ability: Protection 20", " ", "§7Full set ability: Take less damage from projectiles", " ", "§cRequires combat level 500", "§3Unbreakable"))
 									.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 20, true)
-									.addEnchantment(Enchantment.DURABILITY, -1, true)
+									.addEnchantment(Enchantment.DURABILITY, 100000, true)
 									.addItemFlag(ItemFlag.HIDE_ENCHANTS).build();
 							p.getInventory().addItem(giveUltimateSkellyChestplate);
 						}
@@ -273,7 +273,7 @@ public class ShopGUIData implements Listener {
 							ScoreboardListener.setScoreboard(p);
 							ItemStack giveUltimateSkellyLeggings = new ItemBuilder(Material.DIAMOND_LEGGINGS, 1).setDisplayName("§bUltimate Skelly Leggings").setLore(Arrays.asList("§3Protection XX", " ", "§7Ability: Protection 20", " ", "§7Full set ability: Take less damage from projectiles", " ", "§cRequires combat level 500", "§3Unbreakable"))
 									.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 20, true)
-									.addEnchantment(Enchantment.DURABILITY, -1, true)
+									.addEnchantment(Enchantment.DURABILITY, 100000, true)
 									.addItemFlag(ItemFlag.HIDE_ENCHANTS)
 									.addItemFlag(ItemFlag.HIDE_UNBREAKABLE).build();
 							p.getInventory().addItem(giveUltimateSkellyLeggings);
@@ -296,7 +296,7 @@ public class ShopGUIData implements Listener {
 							ItemStack giveUltimateSkellyBoots = new ItemBuilder(Material.DIAMOND_BOOTS, 1).setDisplayName("§bUltimate Skelly Boots").setLore(Arrays.asList("§3Protection XX", "§3Feather Falling 5", " ", "§7Ability: Protection 20 and featherfalling 5", " ", "§7Full set ability: Take less damage from projectiles", " ", "§cRequires combat level 500", "§3Unbreakable"))
 									.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 20, true)
 									.addEnchantment(Enchantment.PROTECTION_FALL, 5, true)
-									.addEnchantment(Enchantment.DURABILITY, -1, true)
+									.addEnchantment(Enchantment.DURABILITY, 100000, true)
 									.addItemFlag(ItemFlag.HIDE_ENCHANTS)
 									.addItemFlag(ItemFlag.HIDE_UNBREAKABLE).build();
 							p.getInventory().addItem(giveUltimateSkellyBoots);

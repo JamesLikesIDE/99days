@@ -54,15 +54,12 @@ public class PlayerHotbarClickStar implements Listener{
 		
 	}
 	
-	@EventHandler(priority = EventPriority.LOWEST)
+	@EventHandler
 	public void InventoryStarClick(InventoryClickEvent e) {
 		Player p = (Player) e.getWhoClicked();
-		if(p.getInventory().getItemInHand().getType() == Material.NETHER_STAR) {
-			if(p.getInventory().getItemInHand().getItemMeta().getDisplayName().contains("§9Menu")) {
-				e.setCancelled(true);
-			}
+		if(p.getInventory().getItemInHand().getType() == Material.NETHER_STAR && p.getInventory().getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase("§9Menu")){
+			e.setCancelled(true);
 		}
-			
 	}
 	
 	@EventHandler
@@ -126,14 +123,14 @@ public class PlayerHotbarClickStar implements Listener{
 		//SKILL LEVEL
 		Integer SwordSkillLvl = CombatSkillAPI.getCombatSkill(uuid);
 		Integer DefSkillLvl = DefenceSkillAPI.getDefenceSkill(uuid); 
-		Integer ArcharySkullLvl = 1;
+		Integer ArcharySkillLvl = 1;
 		Integer CookingSkillLvl = 1;
 		Integer AcrobaticsSkillLvl = 1;
 		Integer FishingSkillLvl = 1;
 		//SKILL LEVEL LORE
 		String CombatSkillLore = "§eCurrent Level: " + SwordSkillLvl;
 		String DefSkillLore = "§eCurrent Level: " + DefSkillLvl;
-		String ArcherySkillLore = "§eCurrent Level: " + ArcharySkullLvl;
+		String ArcherySkillLore = "§eCurrent Level: " + ArcharySkillLvl;
 		String CookingSkillLore = "§eCurrent Level: " + CookingSkillLvl;
 		String AcrobaticsSkillLore = "§eCurrent Level: " + AcrobaticsSkillLvl;
 		String FishingSkillLore = "§eCurrent Level: " + FishingSkillLvl;
