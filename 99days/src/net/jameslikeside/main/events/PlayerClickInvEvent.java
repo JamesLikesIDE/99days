@@ -52,7 +52,7 @@ public class PlayerClickInvEvent implements Listener{
 		spiderBossLVL1Zombie.getEquipment().setChestplate(new ItemStack(Material.DIAMOND_CHESTPLATE));
 		spiderBossLVL1Zombie.getEquipment().setHelmet(new ItemStack(Material.DIAMOND_HELMET));
 		spiderBossLVL1Zombie.getEquipment().setLeggings(new ItemStack(Material.DIAMOND_LEGGINGS));
-		ItemStack diasword = new ItemStack(Material.DIAMOND_SWORD); //You gotta use a item builder.
+		ItemStack diasword = new ItemStack(Material.DIAMOND_SWORD); 
 		ItemMeta diameta = diasword.getItemMeta();
 		diameta.addEnchant(Enchantment.DAMAGE_ALL, 4, true);
 		diasword.setItemMeta(diameta);

@@ -12,8 +12,9 @@ commands:
   SpawnMob:
   Heal:
   SpawnMobGUI:
-  Spawn:
   AuctionGUI:
+  Shop:
+  Bank:
   
 permissions:
   minecraft.command.gamemode:

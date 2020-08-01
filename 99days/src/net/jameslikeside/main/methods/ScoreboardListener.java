@@ -1,11 +1,13 @@
 package net.jameslikeside.main.methods;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
-import net.jameslikeside.main.events.MoneyAddRemoveSetReset;
+import de.dytanic.cloudnet.api.CloudAPI;
+import net.jameslikeside.main.Main;
 import net.minecraft.server.v1_8_R3.IScoreboardCriteria;
 import net.minecraft.server.v1_8_R3.Packet;
 import net.minecraft.server.v1_8_R3.PacketPlayOutScoreboardDisplayObjective;
@@ -17,12 +19,11 @@ import net.minecraft.server.v1_8_R3.ScoreboardScore;
 
 public class ScoreboardListener {
 	
-	private MoneyAddRemoveSetReset Money = new MoneyAddRemoveSetReset();
-	
 	public static void setScoreboard(Player p) throws SQLException {
+		String uuid = p.getUniqueId().toString();
 		Scoreboard scoreboard = new Scoreboard();
 		ScoreboardObjective obj = scoreboard.registerObjective("zagd", IScoreboardCriteria.b);
-		obj.setDisplayName("§6§lFresh2Play"); //Name of Scoreboard
+		obj.setDisplayName("§6§lFresh2Play"); 
 		PacketPlayOutScoreboardObjective createPacket = new PacketPlayOutScoreboardObjective(obj, 0);
 		PacketPlayOutScoreboardDisplayObjective display = new PacketPlayOutScoreboardDisplayObjective(1, obj);
 		
@@ -36,6 +37,8 @@ public class ScoreboardListener {
 		ScoreboardScore a8 = new ScoreboardScore(scoreboard, obj, "§f§lLanguage:");
 		ScoreboardScore a9 = new ScoreboardScore(scoreboard, obj, "§8» §e" + Sb.Playerlang(p));
 
+		
+		
 		a1.setScore(9);
 		a2.setScore(8);
 		a3.setScore(7);
@@ -76,4 +79,5 @@ public class ScoreboardListener {
 	private static void sendPacket(Packet<?> packet, Player p) {
 		((CraftPlayer)p).getHandle().playerConnection.sendPacket(packet);
 	}
+	
 }

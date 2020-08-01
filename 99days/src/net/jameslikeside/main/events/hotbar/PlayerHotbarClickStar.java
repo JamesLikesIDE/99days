@@ -6,20 +6,24 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import net.jameslikeside.main.API.Skills.CombatSkillAPI;
+import net.jameslikeside.main.API.Skills.DefenceSkillAPI;
 import net.jameslikeside.main.data.ItemBuilder;
 
 public class PlayerHotbarClickStar implements Listener{
 
-	@EventHandler
+	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onJoinStar(PlayerJoinEvent e) {
 		Player p = e.getPlayer();
 		
@@ -36,13 +40,13 @@ public class PlayerHotbarClickStar implements Listener{
 	public void onClickStar(PlayerInteractEvent e) {
 		Player p = e.getPlayer();
 		if(e.getAction() == Action.LEFT_CLICK_AIR || e.getAction() == Action.LEFT_CLICK_BLOCK) {
-			if(p.getItemInHand().getType() == Material.NETHER_STAR && p.getItemInHand().getItemMeta().getDisplayName().equals("§9Menu")) {
+			if(p.getItemInHand().getType() == Material.NETHER_STAR && p.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase("§9Menu")) {
 				e.setCancelled(true);
 				mainGUI(p);
 			}
 		} 
 		if(e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK) {
-			if(p.getItemInHand().getType() == Material.NETHER_STAR && p.getItemInHand().getItemMeta().getDisplayName().equals("§9Menu")) {
+			if(p.getItemInHand().getType() == Material.NETHER_STAR && p.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase("§9Menu")) {
 				e.setCancelled(true);
 				mainGUI(p);
 			}
@@ -50,13 +54,25 @@ public class PlayerHotbarClickStar implements Listener{
 		
 	}
 	
-	@EventHandler
+	@EventHandler(priority = EventPriority.LOWEST)
 	public void InventoryStarClick(InventoryClickEvent e) {
 		Player p = (Player) e.getWhoClicked();
-		if(e.getCurrentItem().getType() == Material.NETHER_STAR && e.getCurrentItem().getItemMeta().getDisplayName().equals("§9Menu")) {
-			e.setCancelled(true);
-			mainGUI(p);
-		} else {
+		if(p.getInventory().getItemInHand().getType() == Material.NETHER_STAR) {
+			if(p.getInventory().getItemInHand().getItemMeta().getDisplayName().contains("§9Menu")) {
+				e.setCancelled(true);
+			}
+		}
+			
+	}
+	
+	@EventHandler
+	public void OnDropStar(PlayerDropItemEvent e) {
+		if(e.getItemDrop().getItemStack().getType() == Material.NETHER_STAR) {
+			if(e.getItemDrop().getItemStack().getItemMeta().getDisplayName().equalsIgnoreCase("§9Menu")) {
+				e.setCancelled(true);
+			} else {
+				return;
+			}
 		}
 	}
 	
@@ -83,6 +99,7 @@ public class PlayerHotbarClickStar implements Listener{
 	}
 
 	public static void skillsGUI(Player p) {
+		final String uuid = p.getUniqueId().toString();
 		//SKILLS INVENTORY
 		Inventory skills = Bukkit.createInventory(null, 9*6, "§b§lSkills Menu");
 		ItemStack glass = new ItemBuilder(Material.STAINED_GLASS_PANE, 1, (short) 14).setDisplayName(" ").build();
@@ -100,39 +117,39 @@ public class PlayerHotbarClickStar implements Listener{
 		skills.setItem(52, glass); skills.setItem(53, arrow); 
 		
 		//SKILL NAMES
-		String SwordSkillName = "§b§lSword Skill";
+		String SwordSkillName = "§b§lCombat Skill";
 		String DefSkillName = "§b§lDefensive Skill";
-		String SpySkillName = "§b§lSpy Skill";
+		String ArcherySkillName = "§b§lArchary Skill";
 		String CookingSkillName = "§b§lCooking Skill";
-		String EngineeringSkillName = "§b§lEngineering Skill";
+		String AcrobaticsSkillName = "§b§lEngineering Skill";
 		String FishSkillName = "§b§lFishing Skill";
 		//SKILL LEVEL
-		Integer SwordSkillLvl = 1;
-		Integer DefSkillLvl = 1; 
-		Integer SpySkillLvl = 1;
+		Integer SwordSkillLvl = CombatSkillAPI.getCombatSkill(uuid);
+		Integer DefSkillLvl = DefenceSkillAPI.getDefenceSkill(uuid); 
+		Integer ArcharySkullLvl = 1;
 		Integer CookingSkillLvl = 1;
-		Integer EngineeringSkillLvl = 1;
+		Integer AcrobaticsSkillLvl = 1;
 		Integer FishingSkillLvl = 1;
 		//SKILL LEVEL LORE
-		String SwordSkillLore = "§eCurrent Level: " + SwordSkillLvl;
+		String CombatSkillLore = "§eCurrent Level: " + SwordSkillLvl;
 		String DefSkillLore = "§eCurrent Level: " + DefSkillLvl;
-		String SpySkillLore = "§eCurrent Level: " + SpySkillLvl;
+		String ArcherySkillLore = "§eCurrent Level: " + ArcharySkullLvl;
 		String CookingSkillLore = "§eCurrent Level: " + CookingSkillLvl;
-		String EngineeringSkillLore = "§eCurrent Level: " + EngineeringSkillLvl;
+		String AcrobaticsSkillLore = "§eCurrent Level: " + AcrobaticsSkillLvl;
 		String FishingSkillLore = "§eCurrent Level: " + FishingSkillLvl;
 		//SKILL ITEMS
-		ItemStack SwordSkill = new ItemBuilder(Material.IRON_SWORD, 1).setDisplayName(SwordSkillName).setLore(Arrays.asList(SwordSkillLore)).build();
+		ItemStack Combat = new ItemBuilder(Material.IRON_SWORD, 1).setDisplayName(SwordSkillName).setLore(Arrays.asList(CombatSkillLore)).build();
 		ItemStack Defense = new ItemBuilder(Material.DIAMOND_CHESTPLATE, 1).setDisplayName(DefSkillName).setLore(Arrays.asList(DefSkillLore)).build();
-		ItemStack Spy = new ItemBuilder(Material.EYE_OF_ENDER, 1).setDisplayName(SpySkillName).setLore(Arrays.asList(SpySkillLore)).build();
+		ItemStack Archery = new ItemBuilder(Material.EYE_OF_ENDER, 1).setDisplayName(ArcherySkillName).setLore(Arrays.asList(ArcherySkillLore)).build();
 		ItemStack Cooking = new ItemBuilder(Material.COOKED_BEEF, 1).setDisplayName(CookingSkillName).setLore(Arrays.asList(CookingSkillLore)).build();
-		ItemStack Engineering = new ItemBuilder(Material.REDSTONE, 1).setDisplayName(EngineeringSkillName).setLore(Arrays.asList(EngineeringSkillLore)).build();
+		ItemStack Acrobatics = new ItemBuilder(Material.REDSTONE, 1).setDisplayName(AcrobaticsSkillName).setLore(Arrays.asList(AcrobaticsSkillLore)).build();
 		ItemStack Fishing = new ItemBuilder(Material.COOKED_FISH, 1).setDisplayName(FishSkillName).setLore(Arrays.asList(FishingSkillLore)).build();
 		
-		skills.addItem(SwordSkill);
+		skills.addItem(Combat);
 		skills.addItem(Defense);
-		skills.addItem(Spy);
+		skills.addItem(Archery);
 		skills.addItem(Cooking);
-		skills.addItem(Engineering);
+		skills.addItem(Acrobatics);
 		skills.addItem(Fishing);
 		
 		p.openInventory(skills);
@@ -158,18 +175,22 @@ public class PlayerHotbarClickStar implements Listener{
 		String SpawnName = "§6§lSpawn";
 		String AuctionName = "§6§lAuction House";
 		String FloorsName = "§6§lTemp Floors Teleport";
+		String PlotName = "§6§lPlot and Overworld server";
 		//LOCATION LORES
 		String SpawnLore = "§eTeleports you to spawn";
 		String AuctionLore = "§eTeleports you to the auction house";
 		String FloorsLore = "§eTeleports you to the floors world (Temp)";
+		String PlotLore = "§eTeleports you to the Plot and Overworld server";
 		//LOCATION ITEMS
 		ItemStack Spawn = new ItemBuilder(Material.GRASS, 1).setDisplayName(SpawnName).setLore(Arrays.asList(SpawnLore)).build();
 		ItemStack Auction = new ItemBuilder(Material.GOLD_INGOT, 1).setDisplayName(AuctionName).setLore(Arrays.asList(AuctionLore)).build();
 		ItemStack Floors = new ItemBuilder(Material.STONE, 1).setDisplayName(FloorsName).setLore(Arrays.asList(FloorsLore)).build();
+		ItemStack Plot = new ItemBuilder(Material.DIAMOND_AXE, 1).setDisplayName(PlotName).setLore(Arrays.asList(PlotLore)).build();
 		
 		locations.addItem(Spawn);
 		locations.addItem(Auction);
 		locations.addItem(Floors);
+		locations.addItem(Plot);
 		
 		p.openInventory(locations);
 	}

@@ -1,5 +1,6 @@
 package net.jameslikeside.main.data;
 
+import org.apache.commons.lang.NullArgumentException;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -10,6 +11,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
+import net.jameslikeside.main.Bungee.ServerConnector;
 import net.jameslikeside.main.events.hotbar.PlayerHotbarClickStar;
 
 public class MenuGUILocationData implements Listener{
@@ -64,6 +66,15 @@ public class MenuGUILocationData implements Listener{
 					}
 				}
 			} catch (NullPointerException n) {
+				n.printStackTrace();
+			}
+			try {
+				if(e.getCurrentItem().getType() == Material.DIAMOND_AXE) {
+					if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§6§lPlot and Overworld server")) {
+						ServerConnector.connect("99DaysGrind-1", p);
+					}
+				}
+			} catch (NullArgumentException n) {
 				n.printStackTrace();
 			}
 		}

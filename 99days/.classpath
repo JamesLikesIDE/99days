@@ -4,6 +4,9 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="C:/Users/James/Documents/eclipse/External Jars/spigot-1.8.8.jar"/>
 	<classpathentry kind="lib" path="C:/Users/James/Documents/eclipse/External Jars/CloudNetAPI.jar"/>
-	<classpathentry kind="lib" path="C:/Users/James/Documents/eclipse/External Jars/Vault.jar"/>
+	<classpathentry kind="lib" path="C:/Users/James/Documents/eclipse/External Jars/BountifulAPI-1.6.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/James/Documents/eclipse/External Jars/item-nbt-api-plugin-2.4.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/James/Documents/eclipse/External Jars/BungeeCord.jar"/>
+	<classpathentry kind="lib" path="C:/Users/James/Documents/eclipse/External Jars/worldguard-6.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

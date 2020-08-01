@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -50,6 +51,13 @@ public class ItemBuilder {
 	public ItemBuilder addEnchantment(Enchantment ench, int level, boolean bool) {
 		ItemMeta m = current.getItemMeta();
 		m.addEnchant(ench, level, bool);
+		current.setItemMeta(m);
+		return this;
+	}
+	
+	public ItemBuilder addItemFlag(ItemFlag Flag) {
+		ItemMeta m = current.getItemMeta();
+		m.addItemFlags(Flag);
 		current.setItemMeta(m);
 		return this;
 	}

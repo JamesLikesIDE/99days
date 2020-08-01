@@ -1,6 +1,5 @@
 package net.jameslikeside.main.events;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;
 
@@ -16,11 +15,11 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import net.jameslikeside.main.API.Money.MoneyAddRemoveSetReset;
+import net.jameslikeside.main.API.Skills.CombatSkillAPI;
 import net.jameslikeside.main.methods.ScoreboardListener;
 
 public class PlayerDeathRespawn implements Listener {
-	
-	private MoneyAddRemoveSetReset Money = new MoneyAddRemoveSetReset(); // how does this work tho xD idk but 1
 
 	@EventHandler
 	public void onRespawn(PlayerRespawnEvent r) {
@@ -34,7 +33,7 @@ public class PlayerDeathRespawn implements Listener {
 		MenuStar.setItemMeta(MenuStarMeta); 
 		
 		p.getInventory().setItem(8, MenuStar); 
-		p.teleport(spawnLoc);
+		r.setRespawnLocation(spawnLoc);
 	}
 	
 	@EventHandler
@@ -44,13 +43,15 @@ public class PlayerDeathRespawn implements Listener {
 		if(d.getEntity().getKiller() instanceof Player) {
 			killer.sendMessage(ChatColor.GREEN + "+" + ChatColor.GRAY + "15 Coins");
 			d.setDeathMessage(ChatColor.YELLOW + "" + d.getEntity().getKiller().getName() + " " + ChatColor.GRAY + "has killed" + ChatColor.YELLOW + " " + d.getEntity().getName());
-			p.sendMessage(ChatColor.YELLOW + "" + d.getEntity().getKiller().getName() + " " + ChatColor.GRAY + "has taken 15 coins from you");
 			final String kuuid = killer.getUniqueId().toString();
-			final String puuid = p.getUniqueId().toString();
-			Money.addCoins(kuuid, 15);
-			Money.removeCoins(puuid, 15);
+			MoneyAddRemoveSetReset.addCoins(kuuid, 15);
 			ScoreboardListener.setScoreboard(killer);
 			ScoreboardListener.setScoreboard(p);
+			if(CombatSkillAPI.getCombatSkill(kuuid) == 500) {
+				return;
+			} else {
+				CombatSkillAPI.addCombatSkill(kuuid, 1);
+			}
 		} else {
 			if(!(d.getEntity().getKiller() instanceof Player)) {
 				d.setDeathMessage(ChatColor.YELLOW + "" + d.getEntity().getName() + ChatColor.GRAY + " Died!");

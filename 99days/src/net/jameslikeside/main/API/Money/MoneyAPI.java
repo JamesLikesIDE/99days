@@ -1,4 +1,4 @@
-package net.jameslikeside.main.API;
+package net.jameslikeside.main.API.Money;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

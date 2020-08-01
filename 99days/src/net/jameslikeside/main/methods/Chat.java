@@ -37,6 +37,7 @@ public class Chat implements Listener{
         msg = msg.replaceAll("#U#", "\u00dc");
         msg = msg.replaceAll("#O#", "\u00d6");
         msg = msg.replaceAll("#A#", "\u00c4");
+        msg = msg.replaceAll("ez", "gg");
         String msgk = e.getMessage();
         msgk = msgk.replaceAll("%", "Prozent");
         msgk = msgk.replaceAll("#und#", "&");
@@ -55,9 +56,12 @@ public class Chat implements Listener{
         msgk = msgk.replaceAll("#U#", "\u00dc");
         msgk = msgk.replaceAll("#O#", "\u00d6");
         msgk = msgk.replaceAll("#A#", "\u00c4");
+        msgk = msgk.replaceAll("#discord#", "discord.gg/3hBQJg2");
+        msgk = msgk.replaceAll("ez", "gg");
         String msgv = e.getMessage();
         msgv = msgv.replaceAll("&", "§");
         msgv = msgv.replaceAll("%", "Prozent");
+
         String msgu = e.getMessage();
         msgu = msgu.replaceAll("%", "Prozent");
         final String uuid = p.getUniqueId().toString();
@@ -132,6 +136,9 @@ public class Chat implements Listener{
             }
             else if (CloudAPI.getInstance().getOnlinePlayer(p.getUniqueId()).getPermissionEntity().isInGroup("Coal")) {
                 e.setFormat("§0Coal §r§7" + p.getName() + "§8 » §r" + message);
+            }
+            else if (CloudAPI.getInstance().getOnlinePlayer(p.getUniqueId()).getPermissionEntity().isInGroup("default")) {
+            	e.setFormat("§7" + p.getName() + "§8 » §r" + message);
             }
         }
         else {
