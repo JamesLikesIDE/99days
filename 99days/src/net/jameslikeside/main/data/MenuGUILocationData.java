@@ -1,5 +1,7 @@
 package net.jameslikeside.main.data;
 
+import de.dytanic.cloudnet.api.CloudAPI;
+import de.dytanic.cloudnet.bridge.CloudProxy;
 import org.apache.commons.lang.NullArgumentException;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -14,6 +16,8 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import net.jameslikeside.main.Bungee.ServerConnector;
 import net.jameslikeside.main.events.hotbar.PlayerHotbarClickStar;
 
+import java.util.UUID;
+
 public class MenuGUILocationData implements Listener{
 
 	@EventHandler
@@ -22,60 +26,27 @@ public class MenuGUILocationData implements Listener{
 		
 		if(e.getInventory().getTitle().equals("§b§lLocations Menu")) {
 			e.setCancelled(true);
-			try {
-				if(e.getCurrentItem().getType() == Material.BARRIER) {
-					if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cClose Menu")) {
-						p.closeInventory();
-						return;
-					}
-				}
-			} catch (NullPointerException n) {
-				n.printStackTrace();
+			if ((e.getCurrentItem() == null) || e.getCurrentItem().getType().equals(Material.AIR)){
+				return;
 			}
-			try {
-				if(e.getCurrentItem().getType() == Material.GRASS) {
-					if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§6§lSpawn")) {
-						locationSpawn(p);
-					}
-				}
-			} catch (NullPointerException n) {
-				n.printStackTrace();
+			if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cClose Menu")) {
+				p.closeInventory();
+				return;
 			}
-			try {
-				if(e.getCurrentItem().getType() == Material.ARROW) {
-					if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§a<< Back")) {
-						PlayerHotbarClickStar.mainGUI(p);
-					}
-				}
-			} catch (NullPointerException n) {
-				n.printStackTrace();
+			if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§6§lSpawn")) {
+				locationSpawn(p);
 			}
-			try {
-				if(e.getCurrentItem().getType() == Material.GOLD_INGOT) {
-					if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§6§lAuction House")) {
-						locationAuction(p);
-					}
-				}
-			} catch (NullPointerException n) {
-				n.printStackTrace();
+			if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§a<< Back")) {
+				PlayerHotbarClickStar.mainGUI(p);
 			}
-			try {
-				if(e.getCurrentItem().getType() == Material.STONE) {
-					if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§6§lTemp Floors Teleport")) {
-						locationFloors(p);
-					}
-				}
-			} catch (NullPointerException n) {
-				n.printStackTrace();
+			if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§6§lAuction House")) {
+				locationAuction(p);
 			}
-			try {
-				if(e.getCurrentItem().getType() == Material.DIAMOND_AXE) {
-					if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§6§lPlot and Overworld server")) {
-						ServerConnector.connect("99DaysGrind-1", p);
-					}
-				}
-			} catch (NullArgumentException n) {
-				n.printStackTrace();
+			if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§6§lTemp Floors Teleport 1")) {
+				locationFloors1(p);
+			}
+			if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§6§lTemp Floors Teleport 2")) {
+				locationFloors2(p);
 			}
 		}
 
@@ -103,14 +74,24 @@ public class MenuGUILocationData implements Listener{
 		p.sendMessage(ChatColor.YELLOW + "Teleported to auction house!");
 	}
 	
-	private void locationFloors(Player p) {
+	private void locationFloors1(Player p) {
 		Location floorsLoc = new Location(Bukkit.getServer().getWorld("floors"), -85.500, 4, -172.500);
 		Location loc = p.getPlayer().getLocation();
 		p.teleport(floorsLoc);
 		p.playSound(loc, Sound.NOTE_PLING, 100, 1);
 		p.playSound(loc, Sound.NOTE_BASS_DRUM, 100, 1);
-		p.sendMessage(ChatColor.YELLOW + "Teleported to temp floors spawn!");
+		p.sendMessage(ChatColor.YELLOW + "Teleported to temp floors spawn! 1");
 		
+	}
+
+	private void locationFloors2(Player p) {
+		Location floorsLoc = new Location(Bukkit.getServer().getWorld("floors"), 8, 4, 737);
+		Location loc = p.getPlayer().getLocation();
+		p.teleport(floorsLoc);
+		p.playSound(loc, Sound.NOTE_PLING, 100, 1);
+		p.playSound(loc, Sound.NOTE_BASS_DRUM, 100, 1);
+		p.sendMessage(ChatColor.YELLOW + "Teleported to temp floors spawn! 2");
+
 	}
 	
 }

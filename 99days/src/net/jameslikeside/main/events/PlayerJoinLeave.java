@@ -4,11 +4,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.GameMode;
-import org.bukkit.Location;
-import org.bukkit.Sound;
+import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
+import com.sk89q.worldguard.protection.ApplicableRegionSet;
+import com.sk89q.worldguard.protection.managers.RegionManager;
+import com.sk89q.worldguard.protection.regions.ProtectedRegion;
+import net.jameslikeside.main.Main;
+import net.jameslikeside.main.data.ActionBar;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -20,14 +22,19 @@ import com.connorlinfoot.bountifulapi.BountifulAPI;
 import net.jameslikeside.main.MySQL;
 import net.jameslikeside.main.API.Money.MoneyAddRemoveSetReset;
 import net.jameslikeside.main.methods.ScoreboardListener;
+import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.util.Vector;
+
+import static com.sk89q.worldguard.bukkit.BukkitUtil.toVector;
 
 public class PlayerJoinLeave implements Listener{
-	
+
+    ActionBar ab = new ActionBar();
 	ChatColor cgreen = ChatColor.GREEN;
 	ChatColor cgray = ChatColor.GRAY;
 	ChatColor cred = ChatColor.RED;
-	
-	@SuppressWarnings("deprecation")
+
+    @SuppressWarnings("deprecation")
 	@EventHandler
 	public void onJoin(PlayerJoinEvent e) throws SQLException, InterruptedException{
 		Location spawnLoc = new Location(Bukkit.getServer().getWorld("spawn"), 43.500, 37, 122.500);
@@ -72,6 +79,7 @@ public class PlayerJoinLeave implements Listener{
         }
         BountifulAPI.sendTitle(p, 50, 110, 50, ChatColor.GREEN + "Welcome to 99days");
         BountifulAPI.sendSubtitle(p, 50, 110, 50, ChatColor.AQUA + "Have fun C:");
+        onJoinActionBar(p);
 	}
 	
 	@EventHandler
@@ -117,5 +125,19 @@ public class PlayerJoinLeave implements Listener{
             e.printStackTrace();
         }
     }
+
+    public void onJoinActionBar(Player p){
+	    new BukkitRunnable(){
+            @Override
+            public void run() {
+                if(!p.isOnline()){
+                    cancel();
+                }
+                ab.ActionBarMessage(ChatColor.RED + "" + p.getHealth() + "/" + p.getMaxHealth() + "\\u2764");
+                ab.sendToPlayer(p);
+            }
+        }.runTaskTimer(Main.instance, 5L, 5L);
+    }
+
 	
 }

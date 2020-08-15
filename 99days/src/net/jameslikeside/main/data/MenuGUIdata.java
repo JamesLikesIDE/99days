@@ -15,60 +15,35 @@ public class MenuGUIdata implements Listener{
 		Player p = (Player) e.getWhoClicked();
 		
 
-		if(e.getInventory().getTitle().equals("§b§lMenu")) {
+		if(e.getInventory().getTitle().equalsIgnoreCase("§b§lMenu")) {
 			e.setCancelled(true);
-			try {
-				if(e.getCurrentItem().getType() == Material.BARRIER) {
-					if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cClose Menu")) {
-						p.closeInventory();
-						return;
-					} 
-				}
-			} catch (NullPointerException n) {
-				n.printStackTrace();
+			if ((e.getCurrentItem() == null) || e.getCurrentItem().getType().equals(Material.AIR)){
+				return;
 			}
-			try {
-				if(e.getCurrentItem().getType() == Material.DIAMOND_SWORD) {
-					if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§bSkills")) {
-						PlayerHotbarClickStar.skillsGUI(p);
-					}
-				} 
-			} catch (NullPointerException n) {
-				n.printStackTrace();
+			if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cClose Menu")) {
+				p.closeInventory();
+				return;
 			}
-			try {
-				if(e.getCurrentItem().getType() == Material.GRASS) {
-					if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§6Locations")) {
-						PlayerHotbarClickStar.LocationsGUI(p);
-					} 
-				}
-			} catch (NullPointerException n) {
-				n.printStackTrace();
+			if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§bSkills")) {
+				PlayerHotbarClickStar.skillsGUI(p);
+			}
+			if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§6Locations")) {
+				PlayerHotbarClickStar.LocationsGUI(p);
 			}
 		} 
-		if(e.getInventory().getTitle().equals("§b§lSkills Menu")) {
+		if(e.getInventory().getTitle().equalsIgnoreCase("§b§lSkills Menu")) {
 			e.setCancelled(true);
-			try {
-				if(e.getCurrentItem().getType() == Material.BARRIER) {
-					if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cClose Menu")) {
-						p.closeInventory();
-					} 
-				}
-				
-			} catch (NullPointerException n) {
-				n.printStackTrace();
+			if ((e.getCurrentItem() == null) || e.getCurrentItem().getType().equals(Material.AIR)){
+				return;
 			}
-			try {
-				if(e.getCurrentItem().getType() == Material.ARROW) {
-					if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§a<< Back")) {
-						PlayerHotbarClickStar.mainGUI(p);
-					} 
-					else if (e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§a>> Next")) {
-						p.sendMessage("§aSoon");
-					}
-				}
-			} catch (NullPointerException n){
-				n.printStackTrace();
+			if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§cClose Menu")) {
+				p.closeInventory();
+			}
+			if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§a<< Back")) {
+				PlayerHotbarClickStar.mainGUI(p);
+			}
+			if (e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§a>> Next")) {
+				p.sendMessage("§aSoon");
 			}
 		} 
 	}

@@ -13,19 +13,6 @@ import org.bukkit.event.player.PlayerInteractEvent;
 
 
 public class PlaceEvents implements Listener{
-
-	@EventHandler
-	public void onUltimateSkellyHelmetPlace(PlayerInteractEvent e) {
-		Player p = e.getPlayer();
-		if(e.getAction() == Action.RIGHT_CLICK_BLOCK) {
-			if(p.getItemInHand().getType() == Material.SKULL_ITEM) {
-				e.setCancelled(true);
-				return;
-			} else {
-				return;
-			}	
-		}
-	}
 	
 	@EventHandler
 	public void onBlockPlace(BlockPlaceEvent e) {

@@ -4,6 +4,7 @@ import me.dablakbandit.customentitiesapi.CustomEntitiesAPI;
 import me.dablakbandit.customentitiesapi.entities.CustomEntity;
 import me.dablakbandit.customentitiesapi.entities.CustomEntitySpider;
 import net.jameslikeside.main.CustomMobs.Boss.SpiderBossOne;
+import net.jameslikeside.main.CustomMobs.Boss.SpiderBossTwo;
 import net.jameslikeside.main.methods.Chat;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -33,9 +34,13 @@ public class SpawnMob implements CommandExecutor {
 					p.sendMessage(ChatColor.GREEN + "Spawning Zombie");
 					spawnZombie(p.getLocation(), EntityType.ZOMBIE);
 				} else if (args[0].equals("SPIDER_BOSS_1")) {
-					p.sendMessage(ChatColor.GREEN + "Spawned " + ChatColor.YELLOW + "SPIDER_BOSS_1 at " + ChatColor.YELLOW + s.getName().toString() + ChatColor.GREEN + " location");
+					p.sendMessage(ChatColor.GREEN + "Spawned " + ChatColor.YELLOW + "SPIDER_BOSS_1" + ChatColor.GREEN + " at " + ChatColor.YELLOW + s.getName().toString() + ChatColor.GREEN + " location");
 					SpiderBossOne.SpiderBossOne(p.getLocation(), p);
-				} else {
+				}else if(args[0].equals("SPIDER_BOSS_2")){
+					p.sendMessage(ChatColor.GREEN + "Spawned " + ChatColor.YELLOW + "SPIDER_BOSS_2" + ChatColor.GREEN + " at " + ChatColor.YELLOW + s.getName().toString() + ChatColor.GREEN + " location");
+					SpiderBossTwo.SpiderBossTwo(p.getLocation(), p);
+				}
+				else {
 					p.sendMessage(ChatColor.RED + "Unknown custom mob");
 				}
 			} else if(args.length == 0){

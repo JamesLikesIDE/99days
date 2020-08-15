@@ -56,7 +56,6 @@ public class Chat implements Listener{
         msgk = msgk.replaceAll("#U#", "\u00dc");
         msgk = msgk.replaceAll("#O#", "\u00d6");
         msgk = msgk.replaceAll("#A#", "\u00c4");
-        msgk = msgk.replaceAll("#discord#", "discord.gg/3hBQJg2");
         msgk = msgk.replaceAll("ez", "gg");
         String msgv = e.getMessage();
         msgv = msgv.replaceAll("&", "§");
@@ -104,6 +103,9 @@ public class Chat implements Listener{
             else if (CloudAPI.getInstance().getOnlinePlayer(p.getUniqueId()).getPermissionEntity().isInGroup("T-Mod")) {
                 e.setFormat("§5T-Mod §r§7" + p.getName() + "§8 » §r" + msg);
             }
+            else if (CloudAPI.getInstance().getOnlinePlayer(p.getUniqueId()).getPermissionEntity().isInGroup("SrBuilder")) {
+                e.setFormat("§6SrBuilder §r§7" + p.getName() + "§8 » §r" + msg);
+            }
             else if (CloudAPI.getInstance().getOnlinePlayer(p.getUniqueId()).getPermissionEntity().isInGroup("Builder")) {
                 e.setFormat("§6Builder §r§7" + p.getName() + "§8 » §r" + msg);
             }
@@ -123,7 +125,7 @@ public class Chat implements Listener{
                 e.setFormat("§eFriend §r§7" + p.getName() + "§8 » §r" + message);
             }
             else if (CloudAPI.getInstance().getOnlinePlayer(p.getUniqueId()).getPermissionEntity().isInGroup("Emerald")) {
-                e.setFormat("§3Emerald §r§7" + p.getName() + "§8 » §r" + message);
+                e.setFormat("§aEmerald §r§7" + p.getName() + "§8 » §r" + message);
             }
             else if (CloudAPI.getInstance().getOnlinePlayer(p.getUniqueId()).getPermissionEntity().isInGroup("Diamond")) {
                 e.setFormat("§3Diamond §r§7" + p.getName() + "§8 » §r" + message);

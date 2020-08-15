@@ -2,6 +2,7 @@ package net.jameslikeside.main.events.hotbar;
 
 import java.util.Arrays;
 
+import net.jameslikeside.main.API.Skills.*;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -17,8 +18,6 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import net.jameslikeside.main.API.Skills.CombatSkillAPI;
-import net.jameslikeside.main.API.Skills.DefenceSkillAPI;
 import net.jameslikeside.main.data.ItemBuilder;
 
 public class PlayerHotbarClickStar implements Listener{
@@ -53,12 +52,19 @@ public class PlayerHotbarClickStar implements Listener{
 		} 
 		
 	}
-	
+
 	@EventHandler
-	public void InventoryStarClick(InventoryClickEvent e) {
+	public void onStar(InventoryClickEvent e){
 		Player p = (Player) e.getWhoClicked();
-		if(p.getInventory().getItemInHand().getType() == Material.NETHER_STAR && p.getInventory().getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase("§9Menu")){
-			e.setCancelled(true);
+		ItemStack i = e.getWhoClicked().getInventory().getItem(8);
+		if ((e.getCurrentItem() == null) || !e.getCurrentItem().getType().equals(Material.NETHER_STAR)){
+			return;
+		}
+		if(e.getCurrentItem().getType().equals(Material.NETHER_STAR)){
+			if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§9Menu")){
+				e.setCancelled(true);
+				mainGUI(p);
+			}
 		}
 	}
 	
@@ -67,8 +73,6 @@ public class PlayerHotbarClickStar implements Listener{
 		if(e.getItemDrop().getItemStack().getType() == Material.NETHER_STAR) {
 			if(e.getItemDrop().getItemStack().getItemMeta().getDisplayName().equalsIgnoreCase("§9Menu")) {
 				e.setCancelled(true);
-			} else {
-				return;
 			}
 		}
 	}
@@ -116,21 +120,21 @@ public class PlayerHotbarClickStar implements Listener{
 		//SKILL NAMES
 		String SwordSkillName = "§b§lCombat Skill";
 		String DefSkillName = "§b§lDefensive Skill";
-		String ArcherySkillName = "§b§lArchary Skill";
+		String ArcherySkillName = "§b§lArchery Skill";
 		String CookingSkillName = "§b§lCooking Skill";
-		String AcrobaticsSkillName = "§b§lEngineering Skill";
+		String AcrobaticsSkillName = "§b§lAcrobatics Skill";
 		String FishSkillName = "§b§lFishing Skill";
 		//SKILL LEVEL
 		Integer SwordSkillLvl = CombatSkillAPI.getCombatSkill(uuid);
 		Integer DefSkillLvl = DefenceSkillAPI.getDefenceSkill(uuid); 
-		Integer ArcharySkillLvl = 1;
-		Integer CookingSkillLvl = 1;
-		Integer AcrobaticsSkillLvl = 1;
-		Integer FishingSkillLvl = 1;
+		Integer ArcherySkillLil = ArcherySkillAPI.getArcherySkill(uuid);
+		Integer CookingSkillLvl = CookingSkillAPI.getCookingSkill(uuid);
+		Integer AcrobaticsSkillLvl = AcrobaticsSkillAPI.getAcrobaticsSkill(uuid);
+		Integer FishingSkillLvl = FishingSkillAPI.getFishingSkill(uuid);
 		//SKILL LEVEL LORE
 		String CombatSkillLore = "§eCurrent Level: " + SwordSkillLvl;
 		String DefSkillLore = "§eCurrent Level: " + DefSkillLvl;
-		String ArcherySkillLore = "§eCurrent Level: " + ArcharySkillLvl;
+		String ArcherySkillLore = "§eCurrent Level: " + ArcherySkillLil;
 		String CookingSkillLore = "§eCurrent Level: " + CookingSkillLvl;
 		String AcrobaticsSkillLore = "§eCurrent Level: " + AcrobaticsSkillLvl;
 		String FishingSkillLore = "§eCurrent Level: " + FishingSkillLvl;
@@ -139,7 +143,7 @@ public class PlayerHotbarClickStar implements Listener{
 		ItemStack Defense = new ItemBuilder(Material.DIAMOND_CHESTPLATE, 1).setDisplayName(DefSkillName).setLore(Arrays.asList(DefSkillLore)).build();
 		ItemStack Archery = new ItemBuilder(Material.EYE_OF_ENDER, 1).setDisplayName(ArcherySkillName).setLore(Arrays.asList(ArcherySkillLore)).build();
 		ItemStack Cooking = new ItemBuilder(Material.COOKED_BEEF, 1).setDisplayName(CookingSkillName).setLore(Arrays.asList(CookingSkillLore)).build();
-		ItemStack Acrobatics = new ItemBuilder(Material.REDSTONE, 1).setDisplayName(AcrobaticsSkillName).setLore(Arrays.asList(AcrobaticsSkillLore)).build();
+		ItemStack Acrobatics = new ItemBuilder(Material.FEATHER, 1).setDisplayName(AcrobaticsSkillName).setLore(Arrays.asList(AcrobaticsSkillLore)).build();
 		ItemStack Fishing = new ItemBuilder(Material.COOKED_FISH, 1).setDisplayName(FishSkillName).setLore(Arrays.asList(FishingSkillLore)).build();
 		
 		skills.addItem(Combat);
@@ -171,23 +175,23 @@ public class PlayerHotbarClickStar implements Listener{
 		//LOCATION NAMES
 		String SpawnName = "§6§lSpawn";
 		String AuctionName = "§6§lAuction House";
-		String FloorsName = "§6§lTemp Floors Teleport";
-		String PlotName = "§6§lPlot and Overworld server";
+		String FloorsName = "§6§lTemp Floors Teleport 1";
+		String FloorsName2 = "§6§lTemp Floors Teleport 2";
 		//LOCATION LORES
 		String SpawnLore = "§eTeleports you to spawn";
 		String AuctionLore = "§eTeleports you to the auction house";
-		String FloorsLore = "§eTeleports you to the floors world (Temp)";
-		String PlotLore = "§eTeleports you to the Plot and Overworld server";
+		String FloorsLore = "§eTeleports you to the floors world (Temp) 1";
+		String FloorsLore2 = "§eTeleports you to the floors world (Temp) 2";
 		//LOCATION ITEMS
 		ItemStack Spawn = new ItemBuilder(Material.GRASS, 1).setDisplayName(SpawnName).setLore(Arrays.asList(SpawnLore)).build();
 		ItemStack Auction = new ItemBuilder(Material.GOLD_INGOT, 1).setDisplayName(AuctionName).setLore(Arrays.asList(AuctionLore)).build();
 		ItemStack Floors = new ItemBuilder(Material.STONE, 1).setDisplayName(FloorsName).setLore(Arrays.asList(FloorsLore)).build();
-		ItemStack Plot = new ItemBuilder(Material.DIAMOND_AXE, 1).setDisplayName(PlotName).setLore(Arrays.asList(PlotLore)).build();
-		
+		ItemStack Floors2 = new ItemBuilder(Material.STONE, 1).setDisplayName(FloorsName2).setLore(Arrays.asList(FloorsLore2)).build();
+
 		locations.addItem(Spawn);
 		locations.addItem(Auction);
 		locations.addItem(Floors);
-		locations.addItem(Plot);
+		locations.addItem(Floors2);
 		
 		p.openInventory(locations);
 	}
