@@ -28,11 +28,6 @@ public class MoneyCommands implements CommandExecutor {
                             MoneyAPIS.addCoins(target.getUniqueId().toString(), Money);
                             player.sendMessage("§cAdded a value of §e" + Money + " §cmoney to §e " + target.getName());
                             target.sendMessage("§aYou have recieved §e" + Money + " §amoney from an admin");
-                            try {
-                            	ScoreboardListener.setScoreboard(target);
-                            } catch (SQLException e) {
-                            	e.printStackTrace();
-                            }
                         }
                         else {
                             player.sendMessage("§cPlease enter a valid value!");
@@ -43,11 +38,6 @@ public class MoneyCommands implements CommandExecutor {
                             MoneyAddRemoveSetReset.setCoins(target.getUniqueId().toString(), Money);
                             player.sendMessage("§cSet a value of §e" + Money + " §cmoney to §e" + target.getName());
                             target.sendMessage("§aYour money has been set to §e" + Money);
-                            try {
-                            	ScoreboardListener.setScoreboard(target);
-                            } catch (SQLException e) {
-                            	e.printStackTrace();
-                            }
                         }
                         else {
                             player.sendMessage("§cPlease enter a valid value!");
@@ -58,11 +48,6 @@ public class MoneyCommands implements CommandExecutor {
                             MoneyAPIS.removeCoins(target.getUniqueId().toString(), Money);
                             player.sendMessage("§cRemoved a value of §e" + Money + " §cmoney from §e" + target.getName());
                             target.sendMessage("§e" + Money + " §amoney has been Removed!");
-                            try {
-                            	ScoreboardListener.setScoreboard(target);
-                            } catch (SQLException e) {
-                            	e.printStackTrace();
-                            }
                         }
                         else {
                             player.sendMessage("§cPlease enter a valid value!");

@@ -62,7 +62,6 @@ public class ShopGUIData implements Listener {
 					p.sendMessage(noCoins);
 				} else {
 					MoneyAddRemoveSetReset.removeCoins(uuid, 1);
-					ScoreboardListener.setScoreboard(p);
 					ItemStack giveNormalCake = new ItemStack(Material.CAKE);
 					p.getInventory().addItem(giveNormalCake);
 				}
@@ -72,7 +71,6 @@ public class ShopGUIData implements Listener {
 					p.sendMessage(noCoins);
 				} else {
 					MoneyAddRemoveSetReset.removeCoins(uuid, 10);
-					ScoreboardListener.setScoreboard(p);
 					ItemStack giveNormalSteak = new ItemStack(Material.COOKED_BEEF);
 					giveNormalSteak.setAmount(16);
 					p.getInventory().addItem(giveNormalSteak);
@@ -83,7 +81,6 @@ public class ShopGUIData implements Listener {
 					p.sendMessage(noCoins);
 				} else {
 					MoneyAddRemoveSetReset.removeCoins(uuid, 40);
-					ScoreboardListener.setScoreboard(p);
 					ItemStack giveNormalGap = new ItemStack(Material.GOLDEN_APPLE);
 					p.getInventory().addItem(giveNormalGap);
 				}
@@ -93,7 +90,6 @@ public class ShopGUIData implements Listener {
 					p.sendMessage(noCoins);
 				} else {
 					MoneyAddRemoveSetReset.removeCoins(uuid, 320);
-					ScoreboardListener.setScoreboard(p);
 					ItemStack giveEnchGap = new ItemStack(Material.GOLDEN_APPLE);
 					giveEnchGap.setDurability((short) 1);
 					p.getInventory().addItem(giveEnchGap);
@@ -113,7 +109,6 @@ public class ShopGUIData implements Listener {
 					p.sendMessage(noCoins);
 				} else {
 					MoneyAddRemoveSetReset.removeCoins(uuid, 150);
-					ScoreboardListener.setScoreboard(p);
 					ItemStack giveNormalGoldHelmet = new ItemStack(Material.GOLD_HELMET);
 					p.getInventory().addItem(giveNormalGoldHelmet);
 				}
@@ -123,7 +118,6 @@ public class ShopGUIData implements Listener {
 					p.sendMessage(noCoins);
 				} else {
 					MoneyAddRemoveSetReset.removeCoins(uuid, 300);
-					ScoreboardListener.setScoreboard(p);
 					ItemStack giveNormalGoldChestplate = new ItemStack(Material.GOLD_CHESTPLATE);
 					p.getInventory().addItem(giveNormalGoldChestplate);
 				}
@@ -133,7 +127,6 @@ public class ShopGUIData implements Listener {
 					p.sendMessage(noCoins);
 				} else {
 					MoneyAddRemoveSetReset.removeCoins(uuid, 200);
-					ScoreboardListener.setScoreboard(p);
 					ItemStack giveNormalGoldLeggings = new ItemStack(Material.GOLD_LEGGINGS);
 					p.getInventory().addItem(giveNormalGoldLeggings);
 				}
@@ -143,7 +136,6 @@ public class ShopGUIData implements Listener {
 					p.sendMessage(noCoins);
 				} else {
 					MoneyAddRemoveSetReset.removeCoins(uuid, 100);
-					ScoreboardListener.setScoreboard(p);
 					ItemStack giveNormalGoldboots = new ItemStack(Material.GOLD_BOOTS);
 					p.getInventory().addItem(giveNormalGoldboots);
 				}
@@ -155,7 +147,6 @@ public class ShopGUIData implements Listener {
 					p.sendMessage(noSkill);
 				} else {
 					MoneyAddRemoveSetReset.removeCoins(uuid, 500000);
-					ScoreboardListener.setScoreboard(p);
 					ItemStack giveUltimateSkellyHelmet = new ItemBuilder(CustomSkullData.getSkull("http://textures.minecraft.net/texture/77b9dfd281deaef2628ad5840d45bcda436d6626847587f3ac76498a51c861")).setDisplayName("§bUltimate Skelly Helmet").setLore(Arrays.asList("§3Protection XX", "§3Aqua Affinity", " ", "§7Ability: Protection 20 and unlimited night vision", " ", "§7Full set ability: Take less damage from projectiles", " ", "§cRequires combat level 500", "§3Unbreakable"))
 							.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 20, true)
 							.addEnchantment(Enchantment.OXYGEN, 1, true)
@@ -171,7 +162,6 @@ public class ShopGUIData implements Listener {
 					p.sendMessage(noSkill);
 				} else {
 					MoneyAddRemoveSetReset.removeCoins(uuid, 750000);
-					ScoreboardListener.setScoreboard(p);
 					ItemStack giveUltimateSkellyChestplate = new ItemBuilder(Material.DIAMOND_CHESTPLATE, 1).setDisplayName("§bUltimate Skelly Chestplate").setLore(Arrays.asList("§3Protection XX"," ", "§7Ability: Protection 20", " ", "§7Full set ability: Take less damage from projectiles", " ", "§cRequires combat level 500", "§3Unbreakable"))
 							.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 20, true)
 							.addEnchantment(Enchantment.DURABILITY, 100000, true)
@@ -186,7 +176,6 @@ public class ShopGUIData implements Listener {
 					p.sendMessage(noSkill);
 				} else {
 					MoneyAddRemoveSetReset.removeCoins(uuid, 700000);
-					ScoreboardListener.setScoreboard(p);
 					ItemStack giveUltimateSkellyLeggings = new ItemBuilder(Material.DIAMOND_LEGGINGS, 1).setDisplayName("§bUltimate Skelly Leggings").setLore(Arrays.asList("§3Protection XX", " ", "§7Ability: Protection 20", " ", "§7Full set ability: Take less damage from projectiles", " ", "§cRequires combat level 500", "§3Unbreakable"))
 							.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 20, true)
 							.addEnchantment(Enchantment.DURABILITY, 100000, true)
@@ -202,7 +191,6 @@ public class ShopGUIData implements Listener {
 					p.sendMessage(noSkill);
 				} else {
 					MoneyAddRemoveSetReset.removeCoins(uuid, 650000);
-					ScoreboardListener.setScoreboard(p);
 					ItemStack giveUltimateSkellyBoots = new ItemBuilder(Material.DIAMOND_BOOTS, 1).setDisplayName("§bUltimate Skelly Boots").setLore(Arrays.asList("§3Protection XX", "§3Feather Falling 5", " ", "§7Ability: Protection 20 and featherfalling 5", " ", "§7Full set ability: Take less damage from projectiles", " ", "§cRequires combat level 500", "§3Unbreakable"))
 							.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 20, true)
 							.addEnchantment(Enchantment.PROTECTION_FALL, 5, true)
@@ -224,7 +212,6 @@ public class ShopGUIData implements Listener {
 					p.sendMessage(noCoins);
 				} else {
 					MoneyAddRemoveSetReset.removeCoins(uuid, 20);
-					ScoreboardListener.setScoreboard(p);
 					ItemStack giveStarterBow = new ItemBuilder(Material.BOW, 1).setDisplayName("§bStarter Bow")
 							.addEnchantment(Enchantment.ARROW_DAMAGE, 2, true).build();
 					p.getInventory().addItem(giveStarterBow);
@@ -242,7 +229,6 @@ public class ShopGUIData implements Listener {
 					p.sendMessage(noCoins);
 				} else {
 					MoneyAddRemoveSetReset.removeCoins(uuid, 20);
-					ScoreboardListener.setScoreboard(p);
 					ItemStack giveRegenOnePot = PotionAPI.getPotionItemStack(PotionType.REGEN, 1, true, true, 1);
 					p.getInventory().addItem(giveRegenOnePot);
 				}

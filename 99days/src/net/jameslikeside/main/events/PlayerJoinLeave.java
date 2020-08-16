@@ -8,8 +8,11 @@ import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import com.sk89q.worldguard.protection.ApplicableRegionSet;
 import com.sk89q.worldguard.protection.managers.RegionManager;
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
+import de.dytanic.cloudnet.api.CloudAPI;
 import net.jameslikeside.main.Main;
 import net.jameslikeside.main.data.ActionBar;
+import net.jameslikeside.main.labymod;
+import net.jameslikeside.main.methods.ObjScoreboard;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -51,7 +54,8 @@ public class PlayerJoinLeave implements Listener{
 		p.setFoodLevel(20);
 		p.setGameMode(GameMode.SURVIVAL);
 		try {
-			ScoreboardListener.setScoreboard(p);
+			//ScoreboardListener.setScoreboard(p);
+            ObjScoreboard.setScoreBoard(p);
 		} catch (NullPointerException e1) {
 			e1.printStackTrace();
 		}
@@ -66,12 +70,6 @@ public class PlayerJoinLeave implements Listener{
         catch (SQLException e3) {
             e3.printStackTrace();
         }
-        try {
-            ScoreboardListener.setScoreboard(p);
-        }
-        catch (SQLException e3) {
-            e3.printStackTrace();
-        }
         if(!p.hasPlayedBefore()) {
         	this.setColumm(p.getUniqueId().toString());
             this.setPlayedBefore(p.getUniqueId().toString(), 1);
@@ -80,6 +78,10 @@ public class PlayerJoinLeave implements Listener{
         BountifulAPI.sendTitle(p, 50, 110, 50, ChatColor.GREEN + "Welcome to 99days");
         BountifulAPI.sendSubtitle(p, 50, 110, 50, ChatColor.AQUA + "Have fun C:");
         onJoinActionBar(p);
+
+        labymod.sendCurrentPlayingGamemode(p, true, ChatColor.RED + "???");
+        labymod.updateGameInfo(p, true, ChatColor.RED + "???", 1L, 0L);
+        // CloudAPI.getInstance().getServerId()
 	}
 	
 	@EventHandler

@@ -33,7 +33,6 @@ public class ScoreboardListener {
 		ScoreboardScore a1 = new ScoreboardScore(scoreboard, obj, " ");//1 Line
 		ScoreboardScore a2 = new ScoreboardScore(scoreboard, obj, "§f§lMoney:");
 		ScoreboardScore a3 = null;//2 Line and so on
-		final double n = Sb.PlayerCoins(p);
 		try {
 			double amount1 = Sb.PlayerCoins(p);
 			DecimalFormat formatter1 = new DecimalFormat("#,###");
