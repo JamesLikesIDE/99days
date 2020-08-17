@@ -16,7 +16,7 @@ public class ObjScoreboard {
 
     public static void setScoreBoard(Player p) throws SQLException {
         Scoreboard board = Bukkit.getScoreboardManager().getNewScoreboard();
-        Objective obj = board.registerNewObjective("§6§l99days", "dummy");
+        Objective obj = board.registerNewObjective("§6§lOasis", "dummy");
         obj.setDisplaySlot(DisplaySlot.SIDEBAR);
 
         Score line1 = obj.getScore(" ");

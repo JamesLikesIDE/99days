@@ -80,7 +80,7 @@ public class PlayerJoinLeave implements Listener{
         onJoinActionBar(p);
 
         labymod.sendCurrentPlayingGamemode(p, true, ChatColor.RED + "???");
-        labymod.updateGameInfo(p, true, ChatColor.RED + "???", 1L, 0L);
+        labymod.updateGameInfo(p, true, "???", 1L, 0L);
         // CloudAPI.getInstance().getServerId()
 	}
 	
