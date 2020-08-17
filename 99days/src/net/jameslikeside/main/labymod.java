@@ -63,4 +63,26 @@ public class labymod {
         NONE, CLIPBOARD, RUN_COMMAND, SUGGEST_COMMAND, OPEN_BROWSER;
     }
 
+    public void setSubtitle( Player receiver, UUID subtitlePlayer, String value ) {
+        // List of all subtitles
+        JsonArray array = new JsonArray();
+
+        // Add subtitle
+        JsonObject subtitle = new JsonObject();
+        subtitle.addProperty( "uuid", subtitlePlayer.toString() );
+
+        // Optional: Size of the subtitle
+        subtitle.addProperty( "size", 1.6d ); // Range is 0.8 - 1.6 (1.6 is Minecraft default)
+
+        // no value = remove the subtitle
+        if(value != null)
+            subtitle.addProperty( "value", value );
+
+        // You can set multiple subtitles in one packet
+        array.add(subtitle);
+
+        // Send to LabyMod using the API
+        LabyModPlugin.getInstance().sendServerMessage( receiver, "account_subtitle", array );
+    }
+
 }
