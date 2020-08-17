@@ -1,25 +1,19 @@
 package net.jameslikeside.main.commands;
 
-import me.dablakbandit.customentitiesapi.CustomEntitiesAPI;
-import me.dablakbandit.customentitiesapi.entities.CustomEntity;
-import me.dablakbandit.customentitiesapi.entities.CustomEntitySpider;
 import net.jameslikeside.main.CustomMobs.Boss.SpiderBossOne;
 import net.jameslikeside.main.CustomMobs.Boss.SpiderBossTwo;
-import net.jameslikeside.main.methods.Chat;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.*;
 
 import net.jameslikeside.main.Main;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
 public class SpawnMob implements CommandExecutor {
+
+
 	
 	@Override
 	public boolean onCommand(CommandSender s, Command c, String string, String[] args) {
