@@ -42,12 +42,12 @@ public class Sb {
         return lang;
     }
     
-    public static int PlayerCoins(final Player p) throws SQLException {
-        int moneyFloors = 0;
+    public static long PlayerCoins(final Player p) throws SQLException {
+        long moneyFloors = 0;
         final String uuid = p.getUniqueId().toString();
         final ResultSet rs = Main.mysql.GetResult("SELECT moneyFloors FROM floorsSystem WHERE uuid='" + uuid + "'");
         if (rs.next()) {
-        	moneyFloors = rs.getInt("moneyFloors");
+        	moneyFloors = rs.getLong("moneyFloors");
         }
         return moneyFloors;
     }

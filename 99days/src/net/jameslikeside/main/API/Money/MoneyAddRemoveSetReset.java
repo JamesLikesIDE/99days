@@ -10,13 +10,13 @@ import net.jameslikeside.main.MySQL;
 
 public class MoneyAddRemoveSetReset {
 	
-	public static int getCoins(final String UUID) {
+	public static long getCoins(final String UUID) {
         try {
             final PreparedStatement ps = MySQL.connection.prepareStatement("SELECT MoneyFloors FROM floorsSystem WHERE UUID=?");
             ps.setString(1, UUID);
             final ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                return rs.getInt("MoneyFloors");
+                return rs.getLong("MoneyFloors");
             }
         }
         catch (SQLException e) {
@@ -25,12 +25,12 @@ public class MoneyAddRemoveSetReset {
         return 0;
     }
     
-    public static void setCoins(final String UUID, final int Coins) {
+    public static void setCoins(final String UUID, final long Coins) {
         PreparedStatement st = null;
         try {
             st = MySQL.connection.prepareStatement("UPDATE floorsSystem SET MoneyFloors = ? WHERE UUID = ?");
             st.setString(2, UUID);
-            st.setInt(1, Coins);
+            st.setLong(1, Coins);
             st.executeUpdate();
         }
         catch (SQLException e) {
@@ -38,12 +38,12 @@ public class MoneyAddRemoveSetReset {
         }
     }
     
-    public static void addCoins(final String UUID, final int Coins) {
-        final int current = getCoins(UUID);
-        setCoins(UUID, Coins + current);
+    public static void addCoins(final String UUID, final long Coins) {
+        final long current = getCoins(UUID);
+        setCoins(UUID,Coins + current);
     }
     
-    public static void removeCoins(final String UUID, final int Coins) {
+    public static void removeCoins(final String UUID, final long Coins) {
         setCoins(UUID, getCoins(UUID) - Coins);
     }
 	
